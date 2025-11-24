@@ -27,8 +27,7 @@ export async function handler(event) {
 
   if (route === 'weather') {
     // Read API key from environment
-    // const key = process.env.OPENWEATHER_API_KEY;
-    const key = 'ed15a02192e4b608ce233d5b8f3d31ed';
+    const key = process.env.OPENWEATHER_API_KEY;
     const lat = q.lat || q.latitude || ''; 
     const lon = q.lon || q.longitude || '';
 

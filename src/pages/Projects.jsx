@@ -9,18 +9,27 @@ export default function Projects() {
     async function load() {
       setLoading(true);
       setError(null);
+
+      async function fetchAndParse(url) {
+        const res = await fetch(url);
+        const ct = res.headers.get('content-type') || '';
+        if (!res.ok) throw new Error(`HTTP ${res.status} when fetching ${url}`);
+        if (!ct.includes('application/json')) throw new Error(`Non-JSON response from ${url} (content-type: ${ct})`);
+        return res.json();
+      }
+
       try {
-        const res = await fetch('/api/projects');
-        if (res.ok) {
-          const data = await res.json();
-          setProjects(data.projects || data);
-        } else if (res.status === 404) {
-          throw new Error('Projects API not found (404)');
-        } else {
-          throw new Error(`Status ${res.status}`);
+        let data = null;
+        try {
+          data = await fetchAndParse('/.netlify/functions/projects');
+        } catch (fnErr) {
+          // data = await fetchAndParse('/api/projects.json');
         }
+
+        setProjects(data.projects || data);
       } catch (err) {
         setError(err.message || 'Failed to load projects');
+        setProjects([]);
       } finally {
         setLoading(false);
       }

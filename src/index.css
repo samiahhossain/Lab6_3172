@@ -33,7 +33,6 @@
   background-color: var(--muted-bg);
 }
 
-/* Dark-mode scoped overrides - only active when .dark-theme is on documentElement */
 .dark-theme body,
 .dark-theme .app-root,
 .dark-theme .app-content,
@@ -42,7 +41,6 @@
   color: var(--text) !important;
 }
 
-/* Cards and panels */
 .dark-theme .card,
 .dark-theme .card .card-body,
 .dark-theme .gradient-border {
@@ -51,7 +49,6 @@
   border-color: rgba(255,255,255,0.06) !important;
 }
 
-/* Buttons, inputs and badges in dark mode */
 .dark-theme .form-control {
   background-color: rgba(255,255,255,0.02) !important;
   border-color: rgba(255,255,255,0.08) !important;
@@ -82,7 +79,6 @@
   border: 1px solid rgba(255,255,255,0.03) !important;
 }
 
-/* Skill tiles and elements that had explicit .bg-white */
 .dark-theme .bg-white {
   background-color: rgba(255,255,255,0.02) !important;
   color: var(--text) !important;
@@ -94,12 +90,11 @@
   color: var(--text) !important;
 }
 
-/* Muted text in dark mode */
 .dark-theme .text-muted {
   color: rgba(230,238,248,0.7) !important;
 }
 
-/* Headings ensure contrast */
+
 .dark-theme h1, .dark-theme h2, .dark-theme h3, .dark-theme h4, .dark-theme h5, .dark-theme h6 {
   color: var(--text) !important;
 }

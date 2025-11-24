@@ -1,0 +1,192 @@
+:root {
+  --font-family: 'Courier New', Courier, monospace;
+  --font-weight: 550;
+  --font-size-base: 16px;
+  --primary-grad-start: #6a82fb;
+  --primary-grad-end: #fc5c7d;
+  --accent: #a259f7;
+  --muted-bg: #f7f8fa;
+  --text: #213547;
+  --card-bg: #ffffff;
+
+  font-family: var(--font-family);
+  line-height: 1.5;
+  font-weight: var(--font-weight);
+  font-size: var(--font-size-base);
+
+  color-scheme: light;
+  color: var(--text);
+  background-color: var(--muted-bg);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dark-theme {
+  --muted-bg: #0f1724;
+  --text: #e6eef8;
+  --card-bg: #0b1220;
+  --accent: #7ecbff;
+  color-scheme: dark;
+  background-color: var(--muted-bg);
+}
+
+/* Dark-mode scoped overrides - only active when .dark-theme is on documentElement */
+.dark-theme body,
+.dark-theme .app-root,
+.dark-theme .app-content,
+.dark-theme .container {
+  background-color: var(--muted-bg) !important;
+  color: var(--text) !important;
+}
+
+/* Cards and panels */
+.dark-theme .card,
+.dark-theme .card .card-body,
+.dark-theme .gradient-border {
+  background-color: var(--card-bg) !important;
+  color: var(--text) !important;
+  border-color: rgba(255,255,255,0.06) !important;
+}
+
+/* Buttons, inputs and badges in dark mode */
+.dark-theme .form-control {
+  background-color: rgba(255,255,255,0.02) !important;
+  border-color: rgba(255,255,255,0.08) !important;
+  color: var(--text) !important;
+}
+
+.dark-theme .btn,
+.dark-theme .btn-outline-secondary,
+.dark-theme .btn-primary,
+.dark-theme .btn-outline-primary {
+  color: var(--text) !important;
+}
+
+.dark-theme .btn-outline-secondary {
+  border-color: rgba(255,255,255,0.08) !important;
+  background-color: transparent !important;
+}
+
+.dark-theme .btn-primary {
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #0b1220 !important;
+}
+
+.dark-theme .badge {
+  background-color: rgba(255,255,255,0.04) !important;
+  color: var(--text) !important;
+  border: 1px solid rgba(255,255,255,0.03) !important;
+}
+
+/* Skill tiles and elements that had explicit .bg-white */
+.dark-theme .bg-white {
+  background-color: rgba(255,255,255,0.02) !important;
+  color: var(--text) !important;
+}
+
+.dark-theme .skill-border {
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  background-color: rgba(255,255,255,0.02) !important;
+  color: var(--text) !important;
+}
+
+/* Muted text in dark mode */
+.dark-theme .text-muted {
+  color: rgba(230,238,248,0.7) !important;
+}
+
+/* Headings ensure contrast */
+.dark-theme h1, .dark-theme h2, .dark-theme h3, .dark-theme h4, .dark-theme h5, .dark-theme h6 {
+  color: var(--text) !important;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+
+html, body, #root {
+  height: 100%;
+}
+
+.app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+
+.app-content .container {
+  max-width: 900px;
+}
+
+h1, h2, h3, h4, h5, h6 { text-align: center; }
+
+.app-content .container p { font-size: 1.05rem; }
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+.gradient-border {
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  background-image: linear-gradient(#fff, #fff), linear-gradient(90deg, #2575fc, #6a11cb);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.skill-border {
+  border: 1px solid #6a11cb !important;
+  padding-left: calc(.5rem - 1px);
+  padding-right: calc(.5rem - 1px);
+}
+
+
+.company-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  background-color: #f3f4fb;
+  border: 1px solid rgba(106,17,203,0.12);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #6a11cb;
+  font-weight: 600;
+  font-size: 0.75rem;
+}

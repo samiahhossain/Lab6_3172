@@ -1,0 +1,22 @@
+{
+  "projects": [
+    {
+      "name": "MyTurn",
+      "author": "Samiah Hossain",
+      "languages": ["React", "Python", "Flask", "Tailwind", "Bootstrap"],
+      "description": "Processes audio to provide a ratio of female and male voices in a given meeting."
+    },
+    {
+      "name": "Contact Crawler",
+      "author": "Samiah Hossain",
+      "languages": ["Python", "BeautifulSoup", "Requests"],
+      "description": "Python script that crawls websites and links within them for phone numbers and email addresses."
+    },
+    {
+      "name": "ScribbleSpace",
+      "author": "Samiah Hossain",
+      "languages": ["React Native", "Tailwind", "TypeScript", "Expo"],
+      "description": "Google Keep replica mobile note-taking app focused on interactivity."
+    }
+  ]
+}

@@ -21,7 +21,7 @@ export default function Projects() {
       try {
         let data = null;
         try {
-          data = await fetchAndParse('/.netlify/functions/projects');
+          data = await fetchAndParse('/.netlify/functions/api?route=projects');
         } catch (fnErr) {
           // data = await fetchAndParse('/api/projects.json');
         }

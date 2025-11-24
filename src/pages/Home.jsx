@@ -16,29 +16,26 @@ export default function Home() {
       setWeatherError(null);
       setLocationLabel(label || '');
       try {
-        const res = await fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&timezone=auto`
-        );
-        if (!res.ok) throw new Error(`Status ${res.status}`);
+        // Call our serverless API which proxies to OpenWeatherMap
+        const url = `/.netlify/functions/api?route=weather&lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}`;
+        const res = await fetch(url);
+        if (!res.ok) {
+          throw new Error(`Status ${res.status}`);
+        }
         const data = await res.json();
         if (!mounted) return;
-        setWeather(data.current_weather || null);
+        // data: { city, temperature, humidity }
+        setWeather({
+          city: data.city || label || '',
+          temperature: typeof data.temperature !== 'undefined' ? data.temperature : null,
+          humidity: typeof data.humidity !== 'undefined' ? data.humidity : null,
+        });
+        setLocationLabel(data.city || label || '');
       } catch (err) {
         if (!mounted) return;
+        setWeather(null);
+        setLocationLabel(label || '');
         setWeatherError(err.message || 'Failed to fetch weather');
-        if (lat !== DEFAULT.lat || lon !== DEFAULT.lon) {
-          try {
-            const res2 = await fetch(
-              `https://api.open-meteo.com/v1/forecast?latitude=${DEFAULT.lat}&longitude=${DEFAULT.lon}&current_weather=true&timezone=auto`
-            );
-            if (res2.ok) {
-              const d2 = await res2.json();
-              setWeather(d2.current_weather || null);
-              setLocationLabel(DEFAULT.label);
-            }
-          } catch {
-          }
-        }
       } finally {
         if (mounted) setWeatherLoading(false);
       }
@@ -96,8 +93,9 @@ export default function Home() {
             {weatherError && <p className="text-danger">Error: {weatherError}</p>}
             {weather && (
               <div>
-                <p className="mb-1">Temperature: <strong>{weather.temperature}°C</strong></p>
-                <p className="mb-0">Wind Speed: {weather.windspeed} m/s</p>
+                {weather.city && <p className="mb-1">City: <strong>{weather.city}</strong></p>}
+                <p className="mb-1">Temperature: <strong>{weather.temperature !== null ? `${weather.temperature}°C` : 'N/A'}</strong></p>
+                <p className="mb-0">Humidity: {weather.humidity !== null && weather.humidity !== undefined ? `${weather.humidity}%` : 'N/A'}</p>
               </div>
             )}
           </section>

@@ -56,7 +56,7 @@ export async function handler(event) {
         return {
           statusCode: 502,
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ error: `OpenWeather API error: ${res.status}` }),
+          body: JSON.stringify({ error: `OpenWeather API error: ${res.status}`, details: String(text).slice(0, 1000) }),
         };
       }
 
